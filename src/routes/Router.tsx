@@ -16,16 +16,32 @@ export const router = createBrowserRouter([
         path: "/",
         element: <Home />,
       },
+      {
+        path: "/meeting_room",
+        element: <Home />,
+      },
+      {
+        path: "/about_us",
+        element: <Home />,
+      },
+      {
+        path: "/contact_us",
+        element: <Home />,
+      },
+      {
+        path: "/login",
+        element: <Home />,
+      },
     ],
   },
   {
     path: "dashboard",
     element: <DashboardLayOut />,
     children: [
-        {
-            path: "dashboard",
-            element: <Room_management />,
-        },
+      {
+        path: "dashboard",
+        element: <Room_management />,
+      },
       {
         path: "room_management",
         element: <Room_management />,

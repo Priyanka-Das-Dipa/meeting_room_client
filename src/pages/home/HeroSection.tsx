@@ -55,7 +55,7 @@ const HeroSection = () => {
     <div className="container mx-auto">
       <Slider {...settings}>
         {slides.map((slide) => (
-          <div key={slide.id} className="relative h-full lg:h-[80vh]">
+          <div key={slide.id} className="relative h-full lg:h-[80vh] mt-5">
             <img
               src={slide.image}
               alt={`Slide ${slide.id}`}
