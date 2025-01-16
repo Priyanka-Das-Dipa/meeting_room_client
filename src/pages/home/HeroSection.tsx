@@ -52,10 +52,10 @@ const HeroSection = () => {
     slidesToScroll: 1,
   };
   return (
-    <div className="container mx-auto">
+    <div className="">
       <Slider {...settings}>
         {slides.map((slide) => (
-          <div key={slide.id} className="relative h-full lg:h-[80vh] mt-5">
+          <div key={slide.id} className="relative h-full lg:h-[80vh]">
             <img
               src={slide.image}
               alt={`Slide ${slide.id}`}
