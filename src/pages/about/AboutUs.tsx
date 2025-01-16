@@ -1,6 +1,7 @@
 import React from "react";
 import banner from "../../../public/about_banner.jpg";
 import AboutSlider from "./AboutSlider";
+import Author from "./Author";
 
 const AboutUs = () => {
   return (
@@ -61,6 +62,7 @@ const AboutUs = () => {
           <AboutSlider />
         </div>
       </div>
+      <Author />
     </>
   );
 };
