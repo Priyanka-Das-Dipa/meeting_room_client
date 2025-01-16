@@ -6,6 +6,8 @@ import Error from "../pages/commonPages/Error";
 import DashboardLayOut from "../layOut/DashboardLayOut";
 import Room_management from "../pages/dashboard/Room_management";
 import Room from "../pages/meeting_rooms/Room";
+import AboutUs from "../pages/about/AboutUs";
+import Login from "../pages/authentication/Login";
 
 export const router = createBrowserRouter([
   {
@@ -23,7 +25,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/about_us",
-        element: <Home />,
+        element: <AboutUs />,
       },
       {
         path: "/contact_us",
@@ -31,7 +33,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/login",
-        element: <Home />,
+        element: <Login />,
       },
     ],
   },
