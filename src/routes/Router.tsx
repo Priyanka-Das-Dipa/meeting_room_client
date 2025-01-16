@@ -8,6 +8,7 @@ import Room_management from "../pages/dashboard/Room_management";
 import Room from "../pages/meeting_rooms/Room";
 import AboutUs from "../pages/about/AboutUs";
 import Login from "../pages/authentication/Login";
+import Registration from "../pages/authentication/Registration";
 
 export const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ export const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/register",
+        element: <Registration />,
       },
     ],
   },
