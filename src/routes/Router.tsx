@@ -5,6 +5,7 @@ import Home from "../pages/home/Home";
 import Error from "../pages/commonPages/Error";
 import DashboardLayOut from "../layOut/DashboardLayOut";
 import Room_management from "../pages/dashboard/Room_management";
+import Room from "../pages/meeting_rooms/Room";
 
 export const router = createBrowserRouter([
   {
@@ -18,7 +19,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/meeting_room",
-        element: <Home />,
+        element: <Room />,
       },
       {
         path: "/about_us",

@@ -1,34 +1,28 @@
-// import {
-//   FaCalendarAlt,
-//   FaCheckCircle,
-//   FaClock,
-//   FaHeadset,
-// } from "react-icons/fa";
 const services = [
   {
     id: 1,
-    // icon: <FaClock />,
+    icon: "📅",
     title: "Real-Time Availability",
     description:
       "Stay updated with our instant availability feature, ensuring you can book a service whenever you need it.",
   },
   {
     id: 2,
-    // icon: <FaCalendarAlt />,
+    icon: "✔️",
     title: "Instant Booking Confirmation",
     description:
       "Experience seamless bookings with immediate confirmations, so you can secure your spot in no time.",
   },
   {
     id: 3,
-    // icon: <FaCheckCircle />,
+    icon: "⏰",
     title: "Flexible Scheduling",
     description:
       "Our flexible scheduling options allow you to choose the best time for your needs, with no hassle.",
   },
   {
     id: 4,
-    // icon: <FaHeadset />,
+    icon: "🎧",
     title: "24/7 Support",
     description:
       "Get help anytime, anywhere with our round-the-clock support team ready to assist with any issues.",
@@ -46,7 +40,7 @@ const Choose = () => {
             key={service.id}
             className="p-6 border rounded-lg hover:border-primary hover:shadow-xl transition-all duration-300"
           >
-            {/* <h3 className="text-xl font-semibold mb-2">{service.icon}</h3> */}
+            <h3 className="text-xl font-semibold mb-2">{service.icon}</h3>
             <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
 
             <p className="text-gray-600">{service.description}</p>
