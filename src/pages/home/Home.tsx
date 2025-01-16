@@ -1,4 +1,5 @@
 import Choose from "./Choose";
+import ClientReview from "./ClientReview";
 import HeroSection from "./HeroSection";
 
 const Home = () => {
@@ -6,6 +7,7 @@ const Home = () => {
     <div className="container mx-auto ">
       <HeroSection />
       <Choose />
+      <ClientReview/>
     </div>
   );
 };

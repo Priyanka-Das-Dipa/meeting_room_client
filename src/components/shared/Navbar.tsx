@@ -131,20 +131,20 @@ const Navbar = () => {
             <line x1="4" x2="20" y1="18" y2="18" />
           </svg>
           {dropDownState && (
-            <ul className=" z-10 text-base gap-2  bg-[#f6510adf]  absolute right-0 top-11 flex w-[200px] flex-col  rounded-lg  ">
-              <li className="cursor-pointer  px-6 py-2 text-white rounded-t-lg hover:bg-[#f60a0a] ">
+            <ul className=" z-10 text-base gap-2  bg-gray-100  absolute right-0 top-11 flex w-[200px] flex-col  rounded-lg  ">
+              <li className="cursor-pointer  px-6 py-2 text-black rounded-t-lg hover:bg-primary ">
                 <NavLink to="/">Home</NavLink>
               </li>
-              <li className="cursor-pointer  px-6 py-2 text-white hover:bg-[#f60a0a] ">
+              <li className="cursor-pointer  px-6 py-2 text-black hover:bg-primary ">
                 <NavLink to="/meeting_room">Meeting Room</NavLink>
               </li>
-              <li className="cursor-pointer  px-6 py-2 text-white hover:bg-[#f60a0a] ">
+              <li className="cursor-pointer  px-6 py-2 text-black hover:bg-primary ">
                 <NavLink to="/about_us">About us</NavLink>
               </li>
-              <li className="cursor-pointer  px-6 py-2 text-white hover:bg-[#f60a0a] ">
+              <li className="cursor-pointer  px-6 py-2 text-black hover:bg-primary ">
                 <NavLink to="/contact_us"> Contact us</NavLink>
               </li>
-              <li className="cursor-pointer  px-6 py-2 text-white hover:bg-[#f60a0a] ">
+              <li className="cursor-pointer  px-6 py-2 text-black hover:bg-primary ">
                 <NavLink to="/login">Login</NavLink>
               </li>
             </ul>
