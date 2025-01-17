@@ -110,7 +110,9 @@ const DashboardLayOut: React.FC = () => {
             borderRadius: borderRadiusLG,
           }}
         >
-          <Outlet />
+          <div className="min-h-screen overflow-y-scroll">
+            <Outlet />
+          </div>
         </Content>
       </Layout>
     </Layout>

@@ -1,4 +1,4 @@
-import { Button, Space, Table, TableProps, Tag } from "antd";
+import { Button, Space, Table, TableProps } from "antd";
 
 interface DataType {
   key: string;

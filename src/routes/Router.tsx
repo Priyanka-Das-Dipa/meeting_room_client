@@ -11,9 +11,9 @@ import Registration from "../pages/authentication/Registration";
 import Contact from "../pages/contact/Contact";
 import DashBoardMainPage from "../pages/dashboard/DashBoardMainPage";
 import AllUsers from "../pages/dashboard/user_management/AllUsers";
-import AllRooms from "../pages/dashboard/room_management/AllRooms";
 import UserProfile from "../pages/dashboard/user_profile/UserProfile";
 import AllSlots from "../pages/dashboard/slots_management/AllSlots";
+import RoomManagement from "../pages/dashboard/room_management/RoomManagement";
 
 export const router = createBrowserRouter([
   {
@@ -55,10 +55,10 @@ export const router = createBrowserRouter([
         path: "/dashboard",
         element: <DashBoardMainPage />,
       },
-      {
-        path: "room_management",
-        element: <Room_management />,
-      },
+      // {
+      //   path: "room_management",
+      //   element: <Room_management />,
+      // },
       {
         path: "all_users",
         element: <AllUsers />,
@@ -69,7 +69,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "all_rooms",
-        element: <AllRooms />,
+        element: <RoomManagement />,
       },
       {
         path: "slot_management",
