@@ -9,6 +9,7 @@ import Room from "../pages/meeting_rooms/Room";
 import AboutUs from "../pages/about/AboutUs";
 import Login from "../pages/authentication/Login";
 import Registration from "../pages/authentication/Registration";
+import Contact from "../pages/contact/Contact";
 
 export const router = createBrowserRouter([
   {
@@ -30,7 +31,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/contact_us",
-        element: <Home />,
+        element: <Contact />,
       },
       {
         path: "/login",

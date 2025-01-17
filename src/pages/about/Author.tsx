@@ -2,6 +2,8 @@ import author from "../../../public/author.jpeg";
 
 const Author = () => {
   return (
+    <div className="bg-[#f5f5f5]">
+
     <div className="container mx-auto py-16 h-[80vh] flex items-center justify-center">
       <div className="flex flex-col lg:flex-row items-center lg:items-start text-center lg:text-left">
         <div className="flex-1 mb-8 lg:mb-0 lg:mr-8">
@@ -28,6 +30,7 @@ const Author = () => {
           className="flex-1 h-[280px] w-[150px] bg-contain"
         />
       </div>
+    </div>
     </div>
   );
 };
