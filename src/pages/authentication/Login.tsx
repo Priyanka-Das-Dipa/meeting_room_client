@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Login = () => {
   return (
     <div
-      className="relative h-[90vh] bg-cover bg-center"
+      className="relative h-screen bg-cover bg-center"
       style={{ backgroundImage: "url('/loginPage.jpeg')" }}
     >
       {/* Black opacity overlay */}
@@ -37,14 +37,6 @@ const Login = () => {
                 name="password"
                 id="password"
               />
-              <div className="flex justify-end text-xs">
-                <a
-                  href="#"
-                  className="text-zinc-700 hover:underline dark:text-zinc-300 hover:text-primary"
-                >
-                  Forgot Password?
-                </a>
-              </div>
             </div>
             <button
               type="submit"
