@@ -7,40 +7,85 @@ import {
   VideoCameraOutlined,
 } from "@ant-design/icons";
 import { Button, Layout, Menu, theme } from "antd";
+import { Outlet, useNavigate } from "react-router-dom";
+import DashBoardMainPage from "../pages/dashboard/DashBoardMainPage";
+import UserProfile from "../pages/dashboard/user_profile/UserProfile";
+import AllUsers from "../pages/dashboard/user_management/AllUsers";
+import AllRooms from "../pages/dashboard/room_management/AllRooms";
+import BookingManagement from "../pages/dashboard/booking_management/BookingManagement";
+import AllSlots from "../pages/dashboard/slots_management/AllSlots";
 
 const { Header, Sider, Content } = Layout;
+
+const routes = [
+  {
+    name: "Dashboard",
+    index: true,
+    icon: <UserOutlined />,
+    element: <DashBoardMainPage />,
+  },
+  {
+    name: "My Profile",
+    path: "my_profile",
+    icon: <UserOutlined />,
+    element: <UserProfile />,
+  },
+  {
+    name: "User Management",
+    path: "all_users",
+    icon: <UserOutlined />,
+    element: <AllUsers />,
+  },
+  {
+    name: "Room Management",
+    path: "all_rooms",
+    icon: <VideoCameraOutlined />,
+    element: <AllRooms />,
+  },
+  {
+    name: "Slot Management",
+    path: "slot_management",
+    icon: <UploadOutlined />,
+    element: <AllSlots />,
+  },
+  {
+    name: "Booking Management",
+    path: "booking-management",
+    icon: <UploadOutlined />,
+    element: <BookingManagement />,
+  },
+];
 
 const DashboardLayOut: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
+  const navigate = useNavigate();
+
+  const menuItems = routes.map((route, index) => ({
+    key: route.path || index, // Use path or fallback to index
+    icon: route.icon,
+    label: route.name,
+    onClick: () => route.path && navigate(route.path),
+  }));
 
   return (
     <Layout className="h-screen">
-      <Sider trigger={null} collapsible collapsed={collapsed}>
-        <div className="demo-logo-vertical" />
+      <Sider
+        width={300}
+        collapsedWidth={100}
+        theme="light"
+        trigger={null}
+        collapsible
+        collapsed={collapsed}
+      >
+        <div className="demo-logo-vertical py-6" />
         <Menu
-          theme="dark"
+          theme="light"
           mode="inline"
           defaultSelectedKeys={["1"]}
-          items={[
-            {
-              key: "1",
-              icon: <UserOutlined />,
-              label: "nav 1",
-            },
-            {
-              key: "2",
-              icon: <VideoCameraOutlined />,
-              label: "nav 2",
-            },
-            {
-              key: "3",
-              icon: <UploadOutlined />,
-              label: "nav 3",
-            },
-          ]}
+          items={menuItems}
         />
       </Sider>
       <Layout>
@@ -65,7 +110,7 @@ const DashboardLayOut: React.FC = () => {
             borderRadius: borderRadiusLG,
           }}
         >
-          Content
+          <Outlet />
         </Content>
       </Layout>
     </Layout>
