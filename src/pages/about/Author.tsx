@@ -1,4 +1,4 @@
-import author from "../../../public/author.jpeg";
+import author from "../../assets/images/author.jpeg";
 
 const Author = () => {
   return (

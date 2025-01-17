@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import img from "../../../public/error.jpg";
+import img from "../../assets/images/error.jpg";
 const Error = () => {
   return (
     <div className="bg-black h-screen">
