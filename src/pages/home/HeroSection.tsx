@@ -68,7 +68,7 @@ const HeroSection = () => {
               <p className="text-lg md:text-2xl text-center mt-2">
                 {slide.subheadline}
               </p>
-              <button className="mt-4 px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded">
+              <button className="mt-4 px-6 py-2 font-bold hover:bg-white hover:text-primary border-2 border-white text-white rounded">
                 <Link to="">Book Now</Link>
               </button>
             </div>

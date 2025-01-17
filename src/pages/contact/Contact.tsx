@@ -1,4 +1,3 @@
-
 import ContactFrom from "./ContactFrom";
 
 const Contact = () => {
