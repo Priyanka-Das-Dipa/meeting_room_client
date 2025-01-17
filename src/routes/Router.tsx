@@ -3,7 +3,6 @@ import MainLayOut from "../layOut/MainLayOut";
 import Home from "../pages/home/Home";
 import Error from "../pages/commonPages/Error";
 import DashboardLayOut from "../layOut/DashboardLayOut";
-import Room_management from "../pages/dashboard/Room_management";
 import Room from "../pages/meeting_rooms/Room";
 import AboutUs from "../pages/about/AboutUs";
 import Login from "../pages/authentication/Login";
@@ -12,8 +11,8 @@ import Contact from "../pages/contact/Contact";
 import DashBoardMainPage from "../pages/dashboard/DashBoardMainPage";
 import AllUsers from "../pages/dashboard/user_management/AllUsers";
 import UserProfile from "../pages/dashboard/user_profile/UserProfile";
-import AllSlots from "../pages/dashboard/slots_management/AllSlots";
 import RoomManagement from "../pages/dashboard/room_management/RoomManagement";
+import SlotManagement from "../pages/dashboard/slots_management/SlotManagement";
 
 export const router = createBrowserRouter([
   {
@@ -73,7 +72,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "slot_management",
-        element: <AllSlots />,
+        element: <SlotManagement />,
       },
     ],
   },

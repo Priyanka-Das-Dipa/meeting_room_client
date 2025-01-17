@@ -12,7 +12,8 @@ for (let i = 10; i < 36; i++) {
 const handleChange = (value: string[]) => {
   console.log(`selected ${value}`);
 };
-const RoomSelect = () => {
+
+const AmenitiesSelect = () => {
   return (
     <Space style={{ width: "100%" }} direction="vertical">
       <Select
@@ -20,7 +21,7 @@ const RoomSelect = () => {
         allowClear
         style={{ width: "100%" }}
         placeholder="Please select"
-        defaultValue={["LAPATA", "SYLHETHOOL"]}
+        defaultValue={["a10", "c12"]}
         onChange={handleChange}
         options={options}
       />
@@ -28,4 +29,4 @@ const RoomSelect = () => {
   );
 };
 
-export default RoomSelect;
+export default AmenitiesSelect;

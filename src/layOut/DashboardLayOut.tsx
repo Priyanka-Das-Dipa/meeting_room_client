@@ -13,7 +13,7 @@ import UserProfile from "../pages/dashboard/user_profile/UserProfile";
 import AllUsers from "../pages/dashboard/user_management/AllUsers";
 import AllRooms from "../pages/dashboard/room_management/AllRooms";
 import BookingManagement from "../pages/dashboard/booking_management/BookingManagement";
-import AllSlots from "../pages/dashboard/slots_management/AllSlots";
+import SlotManagement from "../pages/dashboard/slots_management/SlotManagement";
 
 const { Header, Sider, Content } = Layout;
 
@@ -46,7 +46,7 @@ const routes = [
     name: "Slot Management",
     path: "slot_management",
     icon: <UploadOutlined />,
-    element: <AllSlots />,
+    element: <SlotManagement />,
   },
   {
     name: "Booking Management",
