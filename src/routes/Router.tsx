@@ -14,6 +14,7 @@ import UserProfile from "../pages/dashboard/user_profile/UserProfile";
 import RoomManagement from "../pages/dashboard/room_management/RoomManagement";
 import SlotManagement from "../pages/dashboard/slots_management/SlotManagement";
 import BookingManagement from "../pages/dashboard/booking_management/BookingManagement";
+import RoomDetails from "../pages/meeting_rooms/RoomDetails";
 
 export const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ export const router = createBrowserRouter([
       {
         path: "/meeting_room",
         element: <Room />,
+      },
+      {
+        path: "/meeting_room/:id",
+        element: <RoomDetails />,
       },
       {
         path: "/about_us",
@@ -65,7 +70,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "my_profile",
-        element: <UserProfile/>,
+        element: <UserProfile />,
       },
       {
         path: "all_rooms",

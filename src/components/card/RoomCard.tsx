@@ -124,13 +124,13 @@ const RoomCard: React.FC<RoomCardProps> = ({
       {/* button part */}
       <div className="px-4 pt-1 pb-5 flex justify-between gap-3 flex-col sm:flex-row">
         <Link
-          to={`/room-details/${_id}`}
+          to={`/meeting_room/${_id}`}
           className="w-full text-center rounded-md hover:bg-primary px-4 py-2  transition-colors border text-primary border-primary hover:text-white"
         >
           See Details
         </Link>
         <Link
-          to={`/room-details/${_id}`}
+          to={`/meeting_room/${_id}`}
           className="w-full text-center rounded-md hover:bg-primary px-4 py-2  transition-colors border text-primary border-primary hover:text-white"
         >
           See Details
