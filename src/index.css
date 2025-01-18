@@ -69,3 +69,14 @@ button:focus-visible {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.6); /* Transparent white */
+  backdrop-filter: blur(10px); /* Optional blur for better readability */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow for separation */
+  transition: background 0.3s ease, backdrop-filter 0.3s ease;
+  color: #151c35;
+}
