@@ -7,7 +7,7 @@ import {
 import { useState } from "react";
 import { toast } from "sonner";
 
-interface DataType {
+export interface DataType {
   key: string;
   name: string;
   email: string;
