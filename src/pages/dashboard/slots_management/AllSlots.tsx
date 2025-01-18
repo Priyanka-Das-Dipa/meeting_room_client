@@ -1,4 +1,5 @@
 import { Button, Space, Table, TableProps } from "antd";
+import { useGetAllSlotsQuery } from "../../../redux/api/room_management/slot.api";
 
 interface DataType {
   key: string;
@@ -104,9 +105,12 @@ const data: DataType[] = [
 ];
 
 const AllSlots = () => {
+  const { data, isLoading, isFetching } = useGetAllSlotsQuery({});
+  console.log(data, isLoading, isFetching);
   return (
     <div>
       <Table<DataType> columns={columns} dataSource={data} />
+        
     </div>
   );
 };

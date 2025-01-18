@@ -1,31 +1,39 @@
-import { Select, SelectProps, Space } from "antd";
+import { Form, Select } from "antd";
+import { Controller } from "react-hook-form";
 
-const options: SelectProps["options"] = [];
-
-for (let i = 10; i < 36; i++) {
-  options.push({
-    label: i.toString(36) + i,
-    value: i.toString(36) + i,
-  });
+type TSelectProps = {
+  label: string;
+  name: string;
+  options: { value: string; label: string }[] | undefined;
+  defaultValue?: any;
+  disabled?: boolean;
+  mode?: "multiple" | undefined;
+  placeholder?: string;
+  defaultOpen?: boolean;
+  setSelectedSlot?: any;
 }
 
-const handleChange = (value: string[]) => {
-  console.log(`selected ${value}`);
-};
-const RoomSelect = () => {
+const RoomSelect = ({ label, name, options, defaultValue, disabled, mode, placeholder, defaultOpen }: TSelectProps) => {
   return (
-    <Space style={{ width: "100%" }} direction="vertical">
-      <Select
-        mode="multiple"
-        allowClear
-        style={{ width: "100%" }}
-        placeholder="Please select"
-        defaultValue={["LAPATA", "SYLHETHOOL"]}
-        onChange={handleChange}
-        options={options}
-      />
-    </Space>
-  );
+    <Controller name={name} render={({ field, fieldState: { error } }) => {
+        return <Form.Item label={label}>
+            <Select
+                autoFocus={defaultOpen && defaultOpen}
+                mode={mode}
+                defaultValue={defaultValue}
+                placeholder={placeholder}
+                style={{ width: "100%" }}
+                {...field}
+                options={options}
+                size='large'
+                disabled={disabled}
+            />
+            {
+                error && <p style={{ color: "red", marginTop: "4px" }}>{error?.message}</p>
+            }
+        </Form.Item>
+    }} />
+)
 };
 
 export default RoomSelect;

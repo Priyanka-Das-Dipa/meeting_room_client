@@ -1,8 +1,12 @@
-import React from "react";
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React, { useState } from "react";
 import { Button, Form, Input } from "antd";
 import RoomSelect from "./RoomSelect";
 import MultipleImage from "./MultipleImage";
+import { useCreateRoomMutation, useUpdateRoomMutation } from "../../redux/api/room_management/room.api";
+import { toast } from "sonner";
+import { TResponse } from "../../types/ResponseType";
+import { uploadImageToCloudinary } from "../../utilis/uploadImageToCloudinary";
 
 const layout = {
   labelCol: { span: 8 },
@@ -20,11 +24,69 @@ const validateMessages = {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const onFinish = (values: any) => {
-  console.log(values);
-};
 
-const CreateRoomFrom: React.FC = () => {
+const CreateRoomFrom: React.FC = ({isUpdate, transformedProducts} : any) => {
+
+  const [file, setFile] = useState([])
+  const [addRoom] = useCreateRoomMutation();
+  const [updateRoom] = useUpdateRoomMutation()
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+    // const showModal = () => {
+    //     setIsModalOpen(true);
+    // };
+
+    // const handleOk = () => {
+    //     setIsModalOpen(false);
+    // };
+
+    // const handleCancel = () => {
+    //     setIsModalOpen(false);
+    // };
+
+  const onFinish = async (values: any) => {
+    if (!transformedProducts) {
+      const id = toast.loading(isUpdate ? "Updating..." : "Creating....");
+      const imageUrl = [];
+      // send data to cloudinary
+      for (let i = 0; i < file.length; i++) {
+        const image = file[i];
+        const imgurl = await uploadImageToCloudinary(image);
+        imageUrl.push(imgurl);
+        if (i === file.length - 1) {
+          toast.success("Image uploaded", { id });
+        }
+      }
+      const roomData = {
+        ...data,
+        roomImg: imageUrl,
+      };
+      const res = (await addRoom(roomData)) as TResponse<any>;
+      if (res.error) {
+        toast.error(res?.error?.data?.message, { id });
+      } else {
+        toast.success(res?.data?.message, { id });
+        setIsModalOpen(false);
+      }
+    }
+    if (transformedProducts) {
+      const updatdata = { ...data, _id: transformedProducts?._id as string };
+
+      try {
+        const res = (await updateRoom(updatdata)) as TResponse<any>;
+        if (res.error) {
+          toast.error(res?.error?.data?.message);
+        }
+        toast.success(res.data?.message);
+        setIsModalOpen(false);
+      } catch (error: any) {
+        toast.error("Something went wrong");
+      }
+    }
+    console.log(values);
+  };
+
   return (
     <Form
       layout="vertical"
