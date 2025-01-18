@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import {
+  HomeOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  UploadOutlined,
+  UsergroupAddOutlined,
   UserOutlined,
-  VideoCameraOutlined,
 } from "@ant-design/icons";
 import { Button, Layout, Menu, theme } from "antd";
 import { Outlet, useNavigate } from "react-router-dom";
@@ -14,6 +14,9 @@ import AllUsers from "../pages/dashboard/user_management/AllUsers";
 import AllRooms from "../pages/dashboard/room_management/AllRooms";
 import BookingManagement from "../pages/dashboard/booking_management/BookingManagement";
 import SlotManagement from "../pages/dashboard/slots_management/SlotManagement";
+import { MdOutlineBedroomParent } from "react-icons/md";
+import { FaCheckToSlot } from "react-icons/fa6";
+import { TbBrandBooking } from "react-icons/tb";
 
 const { Header, Sider, Content } = Layout;
 
@@ -21,37 +24,37 @@ const routes = [
   {
     name: "Dashboard",
     index: true,
-    icon: <UserOutlined />,
+    icon: <HomeOutlined style={{ fontSize: "20px" }} />,
     element: <DashBoardMainPage />,
   },
   {
     name: "My Profile",
     path: "my_profile",
-    icon: <UserOutlined />,
+    icon: <UserOutlined style={{ fontSize: "20px" }} />,
     element: <UserProfile />,
   },
   {
     name: "User Management",
     path: "all_users",
-    icon: <UserOutlined />,
+    icon: <UsergroupAddOutlined style={{ fontSize: "20px" }} />,
     element: <AllUsers />,
   },
   {
     name: "Room Management",
     path: "all_rooms",
-    icon: <VideoCameraOutlined />,
+    icon: <MdOutlineBedroomParent style={{ fontSize: "20px" }} />,
     element: <AllRooms />,
   },
   {
     name: "Slot Management",
     path: "slot_management",
-    icon: <UploadOutlined />,
+    icon: <FaCheckToSlot style={{ fontSize: "20px" }} />,
     element: <SlotManagement />,
   },
   {
     name: "Booking Management",
     path: "booking-management",
-    icon: <UploadOutlined />,
+    icon: <TbBrandBooking style={{ fontSize: "20px" }} />,
     element: <BookingManagement />,
   },
 ];
@@ -80,8 +83,9 @@ const DashboardLayOut: React.FC = () => {
         collapsible
         collapsed={collapsed}
       >
-        <div className="demo-logo-vertical py-6" />
+        <div className="demo-logo-vertical py-6 " />
         <Menu
+          style={{ fontSize: "18px", fontWeight: "700" }}
           theme="light"
           mode="inline"
           defaultSelectedKeys={["1"]}
