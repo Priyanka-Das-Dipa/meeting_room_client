@@ -1,120 +1,109 @@
-import {
-  Button,
-  DatePicker,
-  DatePickerProps,
-  Form,
-  GetProps,
-  Input,
-  Modal,
-  TimePicker,
-} from "antd";
-import AmenitiesSelect from "../../../components/from/AmenitiesSelect";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Button, Col, Flex, Form, Modal, TimePicker } from "antd";
 import { useState } from "react";
+import RoomFrom from "../../../components/from/RoomFrom";
+import RoomSelect from "../../../components/from/RoomSelect";
+import RoomDatePicker from "../../../components/from/RoomDatePicker";
+import { toast } from "sonner";
+import { TResponse } from "../../../types/ResponseType";
+import { FieldValues, SubmitHandler } from "react-hook-form";
+import { useCreateSlotsMutation } from "../../../redux/api/room_management/slot.api";
+import { useGetAllRoomsQuery } from "../../../redux/api/room_management/room.api";
 
-type RangePickerProps = GetProps<typeof DatePicker.RangePicker>;
-
-const onOk = (value: DatePickerProps["value"] | RangePickerProps["value"]) => {
-  console.log("onOk: ", value);
-};
-
-const layout = {
-  labelCol: { span: 8 },
-  wrapperCol: { span: 24 },
-};
-
-const validateMessages = {
-  required: "${label} is required!",
-  types: {
-    number: "${label} is not a valid number!",
-  },
-  number: {
-    range: "${label} must be between ${min} and ${max}",
-  },
-};
-// Date picker
-const onChange: DatePickerProps["onChange"] = (date, dateString) => {
-  console.log(date, dateString);
-};
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const onFinish = (values: any) => {
-  console.log(values);
-};
 const CreateSlotModal: React.FC = () => {
-  const [open, setOpen] = useState(false);
-  const [confirmLoading, setConfirmLoading] = useState(false);
+  const [startTime, setStarttime] = useState("");
+  const [endTime, setEndtime] = useState("");
+  const [createSlote] = useCreateSlotsMutation();
+  const { data, isLoading } = useGetAllRoomsQuery({});
+  const allrooms = data?.data?.result;
+
+  const roomsOptions: { label: string; value: string }[] = [];
+  allrooms?.forEach((item: { name: string; _id: string }) => {
+    roomsOptions.push({
+      value: item?._id,
+      label: `${item?.name}`,
+    });
+  });
+
+  // console.log(file)
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const showModal = () => {
-    setOpen(true);
+    setIsModalOpen(true);
   };
 
   const handleOk = () => {
-   
-    setConfirmLoading(true);
-    setTimeout(() => {
-      setOpen(false);
-      setConfirmLoading(false);
-    }, 2000);
+    setIsModalOpen(false);
   };
 
   const handleCancel = () => {
-    console.log("Clicked cancel button");
-    setOpen(false);
+    setIsModalOpen(false);
   };
+  const handleSubmit: SubmitHandler<FieldValues> = async (data) => {
+    console.log("this is from slot---", data);
+    const slotData = {
+      ...data,
+      endTime,
+      startTime,
+    };
+    const id = toast.loading("Creating....");
+
+    const res = (await createSlote(slotData)) as TResponse<any>;
+
+    if (res.error) {
+      toast.error(res?.error?.data?.message, { id });
+    } else {
+      toast.success(res?.data?.message, { id });
+      setIsModalOpen(false);
+    }
+  };
+
+  const handleChange: any = (_time: string, timeString: string) => {
+    setStarttime(timeString[0]);
+    setEndtime(timeString[1]);
+  };
+
   return (
     <>
       <Button type="primary" onClick={showModal}>
-        Create Slot
+        Create Slots
       </Button>
       <Modal
-        title="Create a Slot"
-        open={open}
+        title="Add New Rooms"
+        open={isModalOpen}
         onOk={handleOk}
-        confirmLoading={confirmLoading}
         onCancel={handleCancel}
       >
-        <div>
-          <Form
-            layout="vertical"
-            {...layout}
-            name="nest-messages"
-            onFinish={onFinish}
-            style={{ maxWidth: 600 }}
-            validateMessages={validateMessages}
-          >
-            <Form.Item
-              name={["room", "name"]}
-              label="Room Name"
-              rules={[{ required: true }]}
-            >
-              <Input style={{ width: "100%" }} />
-            </Form.Item>
-            <Form.Item label="Pick a Date">
-              <DatePicker onChange={onChange} style={{ width: "100%" }} />
-            </Form.Item>
-            <Form.Item label="Pick a Date">
-              <TimePicker.RangePicker
-                style={{ width: "100%" }}
-                format=" HH:mm"
-                onChange={(value, timeString) => {
-                  console.log("Selected Time: ", value);
-                  console.log("Formatted Selected Time: ", timeString);
-                }}
-                onOk={onOk}
+        <Flex justify="center">
+          <Col span={24}>
+            <RoomFrom onSubmit={handleSubmit}>
+              <RoomSelect
+                disabled={isLoading}
+                options={roomsOptions}
+                name="room"
+                placeholder="Select Rooms"
+                label="Select Rooms"
               />
-            </Form.Item>
-            <Form.Item label="Select Room">
-              <AmenitiesSelect />
-            </Form.Item>
 
-            <div className="flex justify-start items-start -ml-6 pt-5">
-              <Form.Item label={null}>
-                <Button type="primary" htmlType="submit">
-                  Submit
-                </Button>
+              <RoomDatePicker label="Select Date" name="date" />
+
+              <Form.Item
+                label="Start Time and End Time"
+                rules={[{ required: true, message: "Please Select Time" }]}
+              >
+                <TimePicker.RangePicker
+                  format="HH:mm"
+                  className="w-full"
+                  onChange={handleChange}
+                />
               </Form.Item>
-            </div>
-          </Form>
-        </div>  
+
+              <Button htmlType="submit" className="md:px-7 mb-5">
+                Submit
+              </Button>
+            </RoomFrom>
+          </Col>
+        </Flex>
       </Modal>
     </>
   );

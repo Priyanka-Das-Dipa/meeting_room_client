@@ -58,6 +58,7 @@ const CreateRoomModal = ({
   };
 
   const handleSubmit: SubmitHandler<FieldValues> = async (data) => {
+    console.log(data);
     if (!transformedProducts) {
       const id = toast.loading(isUpdate ? "Updating..." : "Creating....");
       const imageUrl = [];
