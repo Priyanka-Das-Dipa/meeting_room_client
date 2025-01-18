@@ -31,9 +31,9 @@ export type TUser = {
         state.user = user;
         state.token = token;
       },
-      logOut: (stata) => {
-        stata.user = null;
-        stata.token = null;
+      logOut: (state) => {
+        state.user = null;
+        state.token = null;
       },
     },
   });
@@ -42,5 +42,5 @@ export type TUser = {
   
   export default authSlice.reducer;
   
-  export const useCurrentToken = (state: RootState) => state.auth.token;
-  export const selectCurrentUser = (state: RootState) => state.auth.user;
+  export const useCurrentToken = (state: RootState) => state.auth;
+  export const selectCurrentUser = (state: RootState) => state.auth;

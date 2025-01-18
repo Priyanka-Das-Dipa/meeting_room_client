@@ -1,7 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { baseApi } from "../baseapi";
 
 const roomApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
+    // create
     createRoom: builder.mutation({
       query: (data) => {
         return {
@@ -12,6 +15,8 @@ const roomApi = baseApi.injectEndpoints({
       },
       invalidatesTags: ["rooms"],
     }),
+    // get
+
     getAllRooms: builder.query({
       query: ({
         search,
@@ -56,6 +61,8 @@ const roomApi = baseApi.injectEndpoints({
       },
       providesTags: ["rooms"],
     }),
+
+    // single room
     getArooms: builder.query({
       query: (id) => {
         return {
@@ -65,6 +72,7 @@ const roomApi = baseApi.injectEndpoints({
       },
       providesTags: ["rooms"],
     }),
+    // delete
     deleteRoom: builder.mutation({
       query: (id) => {
         return {
@@ -74,6 +82,7 @@ const roomApi = baseApi.injectEndpoints({
       },
       invalidatesTags: ["rooms"],
     }),
+    // update
     updateRoom: builder.mutation({
       query: (data: any) => {
         return {
