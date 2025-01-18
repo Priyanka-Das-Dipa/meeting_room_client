@@ -23,7 +23,7 @@ const { Header, Sider, Content } = Layout;
 const routes = [
   {
     name: "Dashboard",
-    index: true,
+    path: "/dashboard",
     icon: <HomeOutlined style={{ fontSize: "20px" }} />,
     element: <DashBoardMainPage />,
   },
@@ -114,7 +114,7 @@ const DashboardLayOut: React.FC = () => {
             borderRadius: borderRadiusLG,
           }}
         >
-          <div className="min-h-screen overflow-y-scroll">
+          <div className="min-h-screen">
             <Outlet />
           </div>
         </Content>
