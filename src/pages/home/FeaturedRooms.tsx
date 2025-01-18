@@ -12,6 +12,8 @@ const FeaturedRooms = () => {
   const allRoom = rooms?.data?.result;
   return (
     <>
+    <div className="container mx-auto">
+
       <h1 className="text-primary text-center text-2xl md:text-4xl font-bold mb-10">
         Our Featured Room's
       </h1>
@@ -51,6 +53,7 @@ const FeaturedRooms = () => {
           </button>
         </Link>
       </div>
+    </div>
     </>
   );
 };

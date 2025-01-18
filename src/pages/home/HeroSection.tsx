@@ -52,7 +52,7 @@ const HeroSection = () => {
     slidesToScroll: 1,
   };
   return (
-    <div className="">
+    <div className="container mx-auto">
       <Slider {...settings}>
         {slides.map((slide) => (
           <div key={slide.id} className="relative h-full lg:h-[80vh]">
@@ -69,7 +69,7 @@ const HeroSection = () => {
                 {slide.subheadline}
               </p>
               <button className="mt-4 px-6 py-2 font-bold hover:bg-white hover:text-primary border-2 border-white text-white rounded">
-                <Link to="">Book Now</Link>
+                <Link to="/meeting_room">Book Now</Link>
               </button>
             </div>
           </div>

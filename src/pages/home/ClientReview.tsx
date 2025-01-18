@@ -64,29 +64,37 @@ const ClientReview = () => {
   };
 
   return (
-    <div className="py-16 px-3 md:px-0">
-      <h2 className="text-2xl text-primary md:text-4xl text-center mb-6 font-roboto font-bold">
-        What Our Clients Say
-      </h2>
-      <Slider {...settings} arrows={true}>
-        {testimonials.map((testimonial, index) => (
-          <div key={index} className="px-4 py-10">
-            <div className="bg-white p-3 md:p-6 rounded-lg shadow-md text-center">
-              <img
-                src={testimonial.image}
-                alt={testimonial.name}
-                className="w-20 h-20 rounded-full mx-auto mb-4"
-              />
-              <h3 className="text-xl font-semibold mb-2">{testimonial.name}</h3>
-              <p className="text-sm text-gray-500 mb-4">{testimonial.title}</p>
-              <p className="text-gray-700 line-clamp-5">
-                {testimonial.feedback}
-              </p>
-            </div>
-          </div>
-        ))}
-      </Slider>
-    </div>
+    <>
+      <div className="container mx-auto">
+        <div className="py-16 px-3 md:px-0">
+          <h2 className="text-2xl text-primary md:text-4xl text-center mb-6 font-roboto font-bold">
+            What Our Clients Say
+          </h2>
+          <Slider {...settings} arrows={true}>
+            {testimonials.map((testimonial, index) => (
+              <div key={index} className="px-4 py-10">
+                <div className="bg-white p-3 md:p-6 rounded-lg shadow-md text-center">
+                  <img
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    className="w-20 h-20 rounded-full mx-auto mb-4"
+                  />
+                  <h3 className="text-xl font-semibold mb-2">
+                    {testimonial.name}
+                  </h3>
+                  <p className="text-sm text-gray-500 mb-4">
+                    {testimonial.title}
+                  </p>
+                  <p className="text-gray-700 line-clamp-5">
+                    {testimonial.feedback}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </Slider>
+        </div>
+      </div>
+    </>
   );
 };
 

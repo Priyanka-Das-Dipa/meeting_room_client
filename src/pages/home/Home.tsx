@@ -6,18 +6,15 @@ import TopServices from "./TopServices";
 
 const Home = () => {
   return (
-    <div className="">
-
-
-    <div className="container mx-auto">
-      <HeroSection />
-      <Choose />
-      <FeaturedRooms/>
-      <ClientReview />
-      <TopServices />
+    <div className="bg-[#f5f5f5]">
+      <div className="">
+        <HeroSection />
+        <Choose />
+        <FeaturedRooms />
+        <ClientReview />
+        <TopServices />
+      </div>
     </div>
-    </div>
-
   );
 };
 

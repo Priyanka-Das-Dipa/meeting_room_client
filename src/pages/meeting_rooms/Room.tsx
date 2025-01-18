@@ -1,14 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from "react";
+import { useState } from "react";
 import { useGetAllRoomsQuery } from "../../redux/api/room_management/room.api";
 import { Button, Form, Input, Pagination, Select, SelectProps } from "antd";
 import NoDataFound from "../commonPages/NoDataFound";
 import RoomCard from "../../components/card/RoomCard";
-import { FaBars } from "react-icons/fa";
 import Loading from "../commonPages/Loading";
 
 const Room = () => {
-  const [sideOpen, setSideOpen] = useState(false);
   const [search, setSearch] = useState("");
   const [range, setRange] = useState(undefined);
   const [capacity, setCapacity] = useState(undefined);
@@ -94,98 +92,108 @@ const Room = () => {
   };
   return (
     <>
-      <div className="container mx-auto">
-        <section className="px-4 sm:px-10 md:px-20">
-          {/* Fixed Filter Section */}
-          <div className="hidden md:flex bg-white w-full border pl-5 p-4 shadow-md sticky top-0 z-50">
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-4 ">
-              <Form.Item label="Search" layout="vertical" className="font-bold">
-                <Input
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                  placeholder="Search Room Name & Amenities"
-                />
-              </Form.Item>
-              <Form.Item
-                label="Capacity"
-                layout="vertical"
-                className="font-bold"
-              >
-                <Select
-                  options={capaCityOptions}
-                  value={capacity}
-                  placeholder="Filter by Capacity"
-                  onChange={(value) => setCapacity(value)}
-                />
-              </Form.Item>
-              <Form.Item
-                label="Price Range"
-                layout="vertical"
-                className="font-bold"
-              >
-                <Select
-                  value={range}
-                  onChange={(value) => setRange(value)}
-                  options={priceFilter}
-                  placeholder="Filter by Price Range"
-                />
-              </Form.Item>
-              <Form.Item
-                label="Sort by Price"
-                layout="vertical"
-                className="font-bold"
-              >
-                <Select
-                  value={sort}
-                  onChange={(value) => setSort(value)}
-                  options={[
-                    { value: "pricePerSlot", label: "Low To High" },
-                    { value: "-pricePerSlot", label: "High to Low" },
-                  ]}
-                  placeholder="Sort by Price"
-                />
-              </Form.Item>
-              <Form.Item label="Reset" layout="vertical" className="font-bold">
-                <Button onClick={handleReset}>Reset All</Button>
-              </Form.Item>
-            </div>
-          </div>
-
-          {/* Room Cards Section */}
-          <div className="py-6">
-            {rooms?.length ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {rooms.map((item: any, idx: number) => (
-                  <RoomCard
-                    key={idx}
-                    pageName="meetingRoom"
-                    _id={item._id}
-                    name={item.name}
-                    amenities={item.amenities}
-                    capacity={item.capacity}
-                    floorNo={item.floorNo}
-                    pricePerSlot={item.pricePerSlot}
-                    roomImg={item.roomImg}
-                    roomNo={item.roomNo}
+      <div className="bg-[#f5f5f5]">
+        <div className="container mx-auto">
+          <section className="px-4 sm:px-10 md:px-20">
+            {/* Fixed Filter Section */}
+            <div className="hidden md:flex bg-white w-full border pl-5 p-4 shadow-md sticky top-0 z-50">
+              <div className="grid grid-cols-1 md:grid-cols-5 gap-4 ">
+                <Form.Item
+                  label="Search"
+                  layout="vertical"
+                  className="font-bold"
+                >
+                  <Input
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    placeholder="Search Room Name & Amenities"
                   />
-                ))}
+                </Form.Item>
+                <Form.Item
+                  label="Capacity"
+                  layout="vertical"
+                  className="font-bold"
+                >
+                  <Select
+                    options={capaCityOptions}
+                    value={capacity}
+                    placeholder="Filter by Capacity"
+                    onChange={(value) => setCapacity(value)}
+                  />
+                </Form.Item>
+                <Form.Item
+                  label="Price Range"
+                  layout="vertical"
+                  className="font-bold"
+                >
+                  <Select
+                    value={range}
+                    onChange={(value) => setRange(value)}
+                    options={priceFilter}
+                    placeholder="Filter by Price Range"
+                  />
+                </Form.Item>
+                <Form.Item
+                  label="Sort by Price"
+                  layout="vertical"
+                  className="font-bold"
+                >
+                  <Select
+                    value={sort}
+                    onChange={(value) => setSort(value)}
+                    options={[
+                      { value: "pricePerSlot", label: "Low To High" },
+                      { value: "-pricePerSlot", label: "High to Low" },
+                    ]}
+                    placeholder="Sort by Price"
+                  />
+                </Form.Item>
+                <Form.Item
+                  label="Reset"
+                  layout="vertical"
+                  className="font-bold"
+                >
+                  <Button onClick={handleReset}>Reset All</Button>
+                </Form.Item>
               </div>
-            ) : (
-              <NoDataFound />
-            )}
-          </div>
+            </div>
 
-          {/* Pagination */}
-          <div className="py-6 flex justify-end items-end">
-            <Pagination
-              size="small"
-              pageSize={pages}
-              total={meta?.totalPage}
-              //   showSizeChanger
-              onChange={(page) => setPages(page)}
-            />
-          </div>
-        </section>
+            {/* Room Cards Section */}
+            <div className="py-6">
+              {rooms?.length ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {rooms.map((item: any, idx: number) => (
+                    <RoomCard
+                      key={idx}
+                      pageName="meetingRoom"
+                      _id={item._id}
+                      name={item.name}
+                      amenities={item.amenities}
+                      capacity={item.capacity}
+                      floorNo={item.floorNo}
+                      pricePerSlot={item.pricePerSlot}
+                      roomImg={item.roomImg}
+                      roomNo={item.roomNo}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <NoDataFound />
+              )}
+            </div>
+
+            {/* Pagination */}
+            <div className="py-6 flex justify-end items-end">
+              <Pagination
+                size="small"
+                pageSize={pages}
+                total={meta?.totalPage}
+                //   showSizeChanger
+                onChange={(page) => setPages(page)}
+              />
+            </div>
+          </section>
+        </div>
       </div>
     </>
   );
