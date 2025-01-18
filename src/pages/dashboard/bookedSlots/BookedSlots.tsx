@@ -69,13 +69,12 @@ const BookedSlots = () => {
           {text}
         </a>
       ),
-      // filters: filterableData,
-      // onFilter: (value, record) => record.address.indexOf(value as string) === 0,
+      
     },
     {
       title: "Room No",
       dataIndex: ["room", "roomNo"],
-      // render: (text: string) => <a className='md:font-bold text-xs sm:text-base' style={{ lineHeight: "1" }}>{text}</a>,
+     
     },
     {
       title: "Date",
