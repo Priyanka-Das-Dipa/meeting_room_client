@@ -1,10 +1,21 @@
 import { FormEvent, useEffect, useRef, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
-
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { toast } from "sonner";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { logOut } from "../../redux/features/auth/authSlice";
+import { verifyToken } from "../../utilis/verifyToken";
+import logo from "../../../public/ElevateSpaces.png";
 const Navbar = () => {
+  const dispatch = useAppDispatch();
+  const token = useAppSelector((state) => state.auth.token);
   const [dropDownState, setDropDownState] = useState(false);
   const dropDownMenuRef = useRef(0);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const navigate = useNavigate();
+  let user;
+  if (token) {
+    user = verifyToken(token);
+  }
 
   const toggleDropdown = () => {
     setIsDropdownOpen((prev) => !prev);
@@ -23,92 +34,92 @@ const Navbar = () => {
       document.removeEventListener("mousedown", closeDropDown);
     };
   }, []);
+
+  const handleLogout = () => {
+    console.log("button clicked");
+    const tosatId = toast.loading("Porccessing...");
+    dispatch(logOut());
+    // setVisible(true);
+    toast.success("Logged Out Successful", { id: tosatId });
+    navigate("/");
+  };
+
   return (
     <div className="bg-[#151C35] shadow-md navbar">
-      <nav className=" container mx-auto flex items-center justify-between  px-4 py-5 text-black ">
-        <div className="scale-100 cursor-pointer rounded-2xl px-3 py-2 text-xl font-semibold text-white transition-all duration-200 hover:scale-110">
+      <nav className="container mx-auto flex items-center justify-between px-4 py-2">
+        {/* Logo */}
+        <div className="scale-100 cursor-pointer rounded-2xl px-3 py-2 text-xl font-semibold  transition-all duration-200 hover:scale-110">
           <Link to="/">
-            <img src="" alt="" />
+            <img src={logo} className="w-26 h-10" alt="Logo" />
           </Link>
         </div>
+
+        {/* Navbar Links */}
         <ul className="hidden items-center justify-between gap-10 lg:flex">
-          <li className="group flex font-bold cursor-pointer flex-col">
-            <NavLink
-              to="/"
-              className={({ isActive }) =>
-                isActive ? "text-primary" : "text-black"
-              }
-            >
-              Home
-            </NavLink>
+          {["Home", "Meeting Room", "About Us", "Contact Us"].map(
+            (item, index) => (
+              <li
+                key={index}
+                className="group flex font-bold cursor-pointer flex-col"
+              >
+                <NavLink
+                  to={`/${item.toLowerCase().replace(" ", "_")}`}
+                  className={({ isActive }) =>
+                    isActive ? "text-primary" : "text-black"
+                  }
+                >
+                  {item}
+                </NavLink>
+                <span className="mt-[2px] h-[3px] w-[0px] rounded-full bg-primary transition-all duration-300 group-hover:w-full"></span>
+              </li>
+            )
+          )}
 
-            <span className="mt-[2px] h-[3px] w-[0px] rounded-full bg-primary transition-all duration-300 group-hover:w-full"></span>
-          </li>
-          <li className="group flex font-bold cursor-pointer flex-col">
-            <NavLink
-              to="/meeting_room"
-              className={({ isActive }) =>
-                isActive ? "text-primary" : "text-black"
-              }
-            >
-              Meeting Room
-            </NavLink>
-            <span className="mt-[2px] h-[3px]  w-[0px] rounded-full bg-primary transition-all duration-300 group-hover:w-full"></span>
-          </li>
-          <li className="group flex font-bold cursor-pointer flex-col">
-            <NavLink
-              to="/about_us"
-              className={({ isActive }) =>
-                isActive ? "text-primary" : "text-black"
-              }
-            >
-              About us
-            </NavLink>
-            <span className="mt-[2px] h-[3px]  w-[0px] rounded-full bg-primary transition-all duration-300 group-hover:w-full"></span>
-          </li>
+          {/* Conditionally Render Login or Profile */}
+          {token ? (
+            <li className="relative">
+              <img
+                src="/path-to-user-image.jpg" // Replace with dynamic user image
+                alt="User"
+                className="w-10 h-10 rounded-full cursor-pointer"
+                onClick={toggleDropdown}
+              />
+              {isDropdownOpen && (
+                <div className="absolute z-50 right-0 mt-2 w-48 bg-white shadow-lg rounded-lg">
+                  <Link to="/dashboard">
+                    <button
+                      className="w-full px-4 py-2 text-left text-black hover:bg-gray-200"
+                      onClick={() => navigate("/dashboard")}
+                    >
+                      Dashboard
+                    </button>
+                  </Link>
 
-          <li className="group flex font-bold cursor-pointer flex-col">
-            <NavLink
-              to="/contact_us"
-              className={({ isActive }) =>
-                isActive ? "text-primary" : "text-black"
-              }
-            >
-              Contact us
-            </NavLink>
-            <span className="mt-[2px] h-[3px]  w-[0px] rounded-full bg-primary transition-all duration-300 group-hover:w-full"></span>
-          </li>
-
-          <li className="group flex font-bold cursor-pointer flex-col">
-            <NavLink
-              to="/login"
-              className={({ isActive }) =>
-                isActive ? "text-primary" : "text-black"
-              }
-            >
-              Login
-            </NavLink>
-            <span className="mt-[2px] h-[3px] w-[0px] rounded-full bg-primary transition-all duration-300 group-hover:w-full"></span>
-          </li>
-          <li className="relative">
-            <img
-              src="/path-to-user-image.jpg"
-              alt="User"
-              className="w-10 h-10 rounded-full cursor-pointer"
-              onClick={toggleDropdown}
-            />
-            {isDropdownOpen && (
-              <div className="absolute z-50 right-0 mt-2 w-48 bg-white shadow-lg rounded-lg">
-                <button className="w-full px-4 py-2 text-left text-black hover:bg-gray-200">
-                  Dashboard
-                </button>
-                <button className="w-full px-4 py-2 text-left text-black hover:bg-gray-200">
-                  Logout
-                </button>
-              </div>
-            )}
-          </li>
+                  <button
+                    className="w-full px-4 py-2 text-left text-black hover:bg-gray-200"
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </button>
+                </div>
+              )}
+            </li>
+          ) : (
+            <li className="group flex font-bold cursor-pointer flex-col">
+              <NavLink
+                to="/login"
+                className={({ isActive }) =>
+                  isActive ? "text-primary" : "text-black"
+                }
+              >
+                Login
+              </NavLink>
+              <span className="mt-[2px] h-[3px] w-[0px] rounded-full bg-primary transition-all duration-300 group-hover:w-full"></span>
+            </li>
+          )}
         </ul>
+
+        {/* Mobile Menu */}
         <div
           ref={dropDownMenuRef}
           onClick={() => setDropDownState(!dropDownState)}
@@ -131,22 +142,24 @@ const Navbar = () => {
             <line x1="4" x2="20" y1="18" y2="18" />
           </svg>
           {dropDownState && (
-            <ul className=" z-50 text-base gap-2  bg-gray-100  absolute right-0 top-11 flex w-[200px] flex-col  rounded-lg  ">
-              <li className="cursor-pointer  px-6 py-2 text-black rounded-t-lg hover:bg-primary ">
-                <NavLink to="/">Home</NavLink>
-              </li>
-              <li className="cursor-pointer  px-6 py-2 text-black hover:bg-primary ">
-                <NavLink to="/meeting_room">Meeting Room</NavLink>
-              </li>
-              <li className="cursor-pointer  px-6 py-2 text-black hover:bg-primary ">
-                <NavLink to="/about_us">About us</NavLink>
-              </li>
-              <li className="cursor-pointer  px-6 py-2 text-black hover:bg-primary ">
-                <NavLink to="/contact_us"> Contact us</NavLink>
-              </li>
-              <li className="cursor-pointer  px-6 py-2 text-black hover:bg-primary ">
-                <NavLink to="/login">Login</NavLink>
-              </li>
+            <ul className="z-50 text-base gap-2 bg-gray-100 absolute right-0 top-11 flex w-[200px] flex-col rounded-lg">
+              {["Home", "Meeting Room", "About Us", "Contact Us"].map(
+                (item, index) => (
+                  <li
+                    key={index}
+                    className="cursor-pointer px-6 py-2 text-black hover:bg-primary"
+                  >
+                    <NavLink to={`/${item.toLowerCase().replace(" ", "_")}`}>
+                      {item}
+                    </NavLink>
+                  </li>
+                )
+              )}
+              {!token && (
+                <li className="cursor-pointer px-6 py-2 text-black hover:bg-primary">
+                  <NavLink to="/login">Login</NavLink>
+                </li>
+              )}
             </ul>
           )}
         </div>
