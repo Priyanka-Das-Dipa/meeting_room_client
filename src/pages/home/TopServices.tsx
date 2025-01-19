@@ -46,6 +46,8 @@ const meetingRoomServices = [
 const TopServices = () => {
   return (
     <>
+    <div className="bg-white">
+
       <div className="container mx-auto">
         <div className="px-4 py-10">
           <h1 className="text-primary text-center text-3xl font-bold mb-10">
@@ -67,6 +69,7 @@ const TopServices = () => {
           </div>
         </div>
       </div>
+    </div>
     </>
   );
 };
