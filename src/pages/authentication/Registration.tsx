@@ -11,9 +11,10 @@ import { setUser } from "../../redux/features/auth/authSlice";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { RegistrationSchema } from "../../validationSchema/LoginRegistrationValidation";
 import RoomFrom from "../../components/from/RoomFrom";
-import { Button, Input } from "antd";
+import { Button, Upload } from "antd";
 import RoomInput from "../../components/from/RoomInput";
 import RoomTextArea from "../../components/from/RoomTextArea";
+import { uploadImageToCloudinary } from "../../utilis/uploadImageToCloudinary";
 
 const Registration = () => {
   const dispatch = useAppDispatch();
@@ -26,16 +27,22 @@ const Registration = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = async (values) => {
     console.log(values);
-    const formData = new FormData();
-    console.log(formData);
     const id = toast.loading("Registering...");
-
-    // formData.append("data", JSON.stringify(values));
-    // formData.append("image", profileImage);
     values.fileUpload;
     try {
-      console.log(values);
-      const res = (await registration(values)) as TResponse<any>;
+      let uploadedImageUrl = "";
+      if (profileImage) {
+        uploadedImageUrl = await uploadImageToCloudinary(profileImage);
+        console.log("Uploaded Image URL:", uploadedImageUrl);
+      }
+
+      // Step 2: Append the image URL to the form values
+      const payload = { ...values, profileImage: uploadedImageUrl };
+
+      // Step 3: Send data to the server for registration
+      const res = (await registration(payload)) as TResponse<any>;
+      console.log(payload);
+      // const res = (await registration(values)) as TResponse<any>;
       if (res?.data?.success) {
         const token = res?.data?.data?.token;
         const user = verifyToken(token);
@@ -51,6 +58,7 @@ const Registration = () => {
         );
       }
     } catch (error: any) {
+      console.error("Error during registration:", error);
       toast.error(error?.message, { id });
     }
   };
@@ -132,13 +140,15 @@ const Registration = () => {
               <label htmlFor="fileUpload" className="block font-medium">
                 Upload Image
               </label>
-              <Input
-                type="file"
-                onChange={(e: any) => setProfileImage(e.target.files[0])}
-                className="flex h-10 w-full rounded-md border px-3 py-2 text-sm focus:ring-1 focus-visible:outline-none dark:border-zinc-700"
-                id="fileUpload"
-                name="fileUpload"
-              />
+              <Upload
+                beforeUpload={(file) => {
+                  setProfileImage(file);
+                  return false; // Prevent automatic upload
+                }}
+                maxCount={1}
+              >
+                <Button>Upload Image</Button>
+              </Upload>
             </div>
 
             <Button

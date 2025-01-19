@@ -3,7 +3,10 @@ import React, { useState } from "react";
 import { Button, Form, Input } from "antd";
 import RoomSelect from "./RoomSelect";
 import MultipleImage from "./MultipleImage";
-import { useCreateRoomMutation, useUpdateRoomMutation } from "../../redux/api/room_management/room.api";
+import {
+  useCreateRoomMutation,
+  useUpdateRoomMutation,
+} from "../../redux/api/room_management/room.api";
 import { toast } from "sonner";
 import { TResponse } from "../../types/ResponseType";
 import { uploadImageToCloudinary } from "../../utilis/uploadImageToCloudinary";
@@ -25,25 +28,24 @@ const validateMessages = {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 
-const CreateRoomFrom: React.FC = ({isUpdate, transformedProducts} : any) => {
-
-  const [file, setFile] = useState([])
+const CreateRoomFrom: React.FC = ({ isUpdate, transformedProducts }: any) => {
+  const [file, setFile] = useState([]);
   const [addRoom] = useCreateRoomMutation();
-  const [updateRoom] = useUpdateRoomMutation()
+  const [updateRoom] = useUpdateRoomMutation();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-    // const showModal = () => {
-    //     setIsModalOpen(true);
-    // };
+  // const showModal = () => {
+  //     setIsModalOpen(true);
+  // };
 
-    // const handleOk = () => {
-    //     setIsModalOpen(false);
-    // };
+  // const handleOk = () => {
+  //     setIsModalOpen(false);
+  // };
 
-    // const handleCancel = () => {
-    //     setIsModalOpen(false);
-    // };
+  // const handleCancel = () => {
+  //     setIsModalOpen(false);
+  // };
 
   const onFinish = async (values: any) => {
     if (!transformedProducts) {
