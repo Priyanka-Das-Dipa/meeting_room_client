@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useRef, useState } from "react";
+import {  useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
@@ -9,7 +9,7 @@ const Navbar = () => {
   const dispatch = useAppDispatch();
   const token = useAppSelector((state) => state.auth.token);
   const [dropDownState, setDropDownState] = useState(false);
-  const dropDownMenuRef = useRef(0);
+  // const dropDownMenuRef = useRef(0);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const navigate = useNavigate();
   let user;
@@ -21,23 +21,23 @@ const Navbar = () => {
     setIsDropdownOpen((prev) => !prev);
   };
 
-  useEffect(() => {
-    const closeDropDown = (e: FormEvent) => {
-      if (!dropDownMenuRef?.current?.contains(e?.target)) {
-        setDropDownState(false);
-      }
-    };
+  // useEffect(() => {
+  //   const closeDropDown = (e: FormEvent) => {
+  //     if (!dropDownMenuRef?.current?.contains(e?.target)) {
+  //       setDropDownState(false);
+  //     }
+  //   };
 
-    document.addEventListener("mousedown", closeDropDown);
+  //   document.addEventListener("mousedown", closeDropDown);
 
-    return () => {
-      document.removeEventListener("mousedown", closeDropDown);
-    };
-  }, []);
+  //   return () => {
+  //     document.removeEventListener("mousedown", closeDropDown);
+  //   };
+  // }, []);
 
   const handleLogout = () => {
     console.log("button clicked");
-    const tosatId = toast.loading("Porccessing...");
+    const tosatId = toast.loading("Processing...");
     dispatch(logOut());
     // setVisible(true);
     toast.success("Logged Out Successful", { id: tosatId });
@@ -79,7 +79,7 @@ const Navbar = () => {
           {token ? (
             <li className="relative">
               <img
-                src="/path-to-user-image.jpg" // Replace with dynamic user image
+                src={user?.profileImage} // Replace with dynamic user image
                 alt="User"
                 className="w-10 h-10 rounded-full cursor-pointer"
                 onClick={toggleDropdown}
@@ -121,7 +121,7 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         <div
-          ref={dropDownMenuRef}
+          // ref={dropDownMenuRef}
           onClick={() => setDropDownState(!dropDownState)}
           className="relative flex transition-transform lg:hidden"
         >

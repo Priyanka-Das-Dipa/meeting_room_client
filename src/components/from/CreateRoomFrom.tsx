@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from "react";
+import { useState } from "react";
 import { Button, Form, Input } from "antd";
 import RoomSelect from "./RoomSelect";
 import MultipleImage from "./MultipleImage";
@@ -10,6 +11,7 @@ import {
 import { toast } from "sonner";
 import { TResponse } from "../../types/ResponseType";
 import { uploadImageToCloudinary } from "../../utilis/uploadImageToCloudinary";
+import { data } from "react-router-dom";
 
 const layout = {
   labelCol: { span: 8 },
@@ -26,6 +28,24 @@ const validateMessages = {
   },
 };
 
+const amenitiesOptions = [
+  { value: "whiteboard", label: "Whiteboard" },
+  { value: "projector", label: "Projector" },
+  { value: "videoConferencing", label: "Video Conferencing" },
+  { value: "soundSystem", label: "Sound System" },
+  { value: "airConditioning", label: "Air Conditioning" },
+  { value: "wifi", label: "High-Speed WiFi" },
+  { value: "television", label: "Television" },
+  { value: "coffeeMachine", label: "Coffee Machine" },
+  { value: "printer", label: "Printer" },
+  { value: "flipChart", label: "Flip Chart" },
+  { value: "loungeArea", label: "Lounge Area" },
+  { value: "naturalLight", label: "Natural Light" },
+  { value: "catering", label: "Catering Service" },
+  { value: "reception", label: "Reception Desk" },
+  { value: "parking", label: "Parking Space" },
+];
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 
 const CreateRoomFrom: React.FC = ({ isUpdate, transformedProducts }: any) => {
@@ -34,18 +54,7 @@ const CreateRoomFrom: React.FC = ({ isUpdate, transformedProducts }: any) => {
   const [updateRoom] = useUpdateRoomMutation();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  // const showModal = () => {
-  //     setIsModalOpen(true);
-  // };
-
-  // const handleOk = () => {
-  //     setIsModalOpen(false);
-  // };
-
-  // const handleCancel = () => {
-  //     setIsModalOpen(false);
-  // };
+  console.log(setFile, isModalOpen);
 
   const onFinish = async (values: any) => {
     if (!transformedProducts) {
@@ -141,7 +150,16 @@ const CreateRoomFrom: React.FC = ({ isUpdate, transformedProducts }: any) => {
           <Input type="number" className="appearance-none" />
         </Form.Item>
       </div>
-      <RoomSelect />
+      <RoomSelect
+        options={amenitiesOptions}
+        mode="multiple"
+        name="amenities"
+        placeholder="Select amenities"
+        label="Amenities"
+        defaultValue={transformedProducts?.amenities?.map(
+          (items: string) => items
+        )}
+      />
       <div className="pt-5">
         <MultipleImage />
       </div>

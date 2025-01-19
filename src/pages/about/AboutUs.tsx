@@ -1,4 +1,4 @@
-import React from "react";
+
 import banner from "../../assets/images/about_banner.jpg";
 import AboutSlider from "./AboutSlider";
 import Author from "./Author";
