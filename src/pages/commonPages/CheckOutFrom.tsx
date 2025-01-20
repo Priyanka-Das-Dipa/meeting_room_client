@@ -32,6 +32,7 @@ const CheckOutFrom = ({
   });
 
   const handleSubmit = async (event: React.FormEvent) => {
+    console.log("button clicked")
     const toastId = toast.loading("Data Processing...");
     event.preventDefault();
     if (!stripe || !elements) {
