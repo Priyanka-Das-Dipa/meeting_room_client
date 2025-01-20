@@ -3,7 +3,8 @@ import React from "react";
 import Slider from "react-slick";
 import { useGetAllSlotsQuery } from "../../redux/api/room_management/slot.api";
 import { Link } from "react-router-dom";
-import { Card, Tag } from "antd";
+import { Button, Card, Tag } from "antd";
+import RoomBookingModal from "../../pages/meeting_rooms/RoomBokingModal";
 
 export interface RoomCardProps {
   name: string;
@@ -27,16 +28,16 @@ const RoomCard: React.FC<RoomCardProps> = ({
   roomImg,
   _id,
 }) => {
-  //   const roomdetail = {
-  //     name,
-  //     roomNo,
-  //     floorNo,
-  //     capacity,
-  //     pricePerSlot,
-  //     amenities,
-  //     roomImg,
-  //     _id,
-  //   };
+  const roomDetail = {
+    name,
+    roomNo,
+    floorNo,
+    capacity,
+    pricePerSlot,
+    amenities,
+    roomImg,
+    _id,
+  };
 
   const { data } = useGetAllSlotsQuery({ roomId: _id });
   const slots = data?.data;
@@ -129,14 +130,8 @@ const RoomCard: React.FC<RoomCardProps> = ({
         >
           See Details
         </Link>
-        <Link
-          to={`/meeting_room/${_id}`}
-          className="w-full text-center rounded-md hover:bg-primary px-4 py-2  transition-colors border text-primary border-primary hover:text-white"
-        >
-          See Details
-        </Link>
 
-        {/* <BookingModal room={roomdetail} /> */}
+        <RoomBookingModal room={roomDetail} />
       </div>
     </Card>
   );
