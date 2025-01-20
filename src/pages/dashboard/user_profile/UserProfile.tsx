@@ -1,12 +1,6 @@
-
 import { Card } from "antd";
 import { useAppSelector } from "../../../redux/hooks";
-import {
-  FaEnvelope,
-  FaMapMarkerAlt,
-  FaPhone,
-  FaUser,
-} from "react-icons/fa";
+import { FaEnvelope, FaMapMarkerAlt, FaPhone, FaUser } from "react-icons/fa";
 
 const UserProfile = () => {
   const { user } = useAppSelector((state) => state.auth);
@@ -25,10 +19,12 @@ const UserProfile = () => {
           <div>
             <h1 className="text-3xl text-center font-semibold capitalize mb-2">
               My Name is
-              {user?.name}
+              <span className="uppercase"> {user?.name}</span>
             </h1>
-            <p className="text-lg mb-2">
-              <span className="font-semibold">{user?.role}</span>
+            <p className="text-lg mb-2 text-center text-blue-500 ">
+              <span className="font-extrabold text-center uppercase">
+                {user?.role}
+              </span>
             </p>
           </div>
           {/* card */}
@@ -44,7 +40,7 @@ const UserProfile = () => {
               <FaEnvelope className=" text-4xl mr-4" />
             </div>
             <div className="">
-              <p className="text-gray-600 md:text-lg font-semibold">
+              <p className="text-blue-500 pt-2 md:text-lg font-semibold">
                 {user?.email}
               </p>
             </div>
@@ -59,7 +55,7 @@ const UserProfile = () => {
               <FaPhone className=" text-4xl mr-4" />
             </div>
             <div>
-              <p className="text-gray-600 md:text-lg font-semibold">
+              <p className="text-blue-500 pt-2 md:text-lg font-semibold">
                 {user?.phone}
               </p>
             </div>
@@ -74,7 +70,7 @@ const UserProfile = () => {
               <FaMapMarkerAlt className=" text-4xl mr-4" />
             </div>
             <div>
-              <p className="text-gray-600 md:text-lg font-semibold">
+              <p className="text-blue-500 pt-2 md:text-lg font-semibold">
                 {user?.address}
               </p>
             </div>
@@ -89,7 +85,7 @@ const UserProfile = () => {
               <FaUser className=" text-4xl mr-4" />
             </div>
             <div>
-              <p className="text-gray-600 md:text-lg font-semibold">
+              <p className="text-blue-500 pt-2 md:text-lg font-semibold">
                 {user?.role}
               </p>
             </div>

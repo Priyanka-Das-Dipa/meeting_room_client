@@ -1,10 +1,11 @@
-import {  useState } from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { logOut } from "../../redux/features/auth/authSlice";
 import { verifyToken } from "../../utilis/verifyToken";
-import logo from "../../../public/ElevateSpaces.png";
+import logo from "/ElevateSpaces.png";
+import { FaShoppingCart } from "react-icons/fa";
 const Navbar = () => {
   const dispatch = useAppDispatch();
   const token = useAppSelector((state) => state.auth.token);
@@ -21,20 +22,6 @@ const Navbar = () => {
     setIsDropdownOpen((prev) => !prev);
   };
 
-  // useEffect(() => {
-  //   const closeDropDown = (e: FormEvent) => {
-  //     if (!dropDownMenuRef?.current?.contains(e?.target)) {
-  //       setDropDownState(false);
-  //     }
-  //   };
-
-  //   document.addEventListener("mousedown", closeDropDown);
-
-  //   return () => {
-  //     document.removeEventListener("mousedown", closeDropDown);
-  //   };
-  // }, []);
-
   const handleLogout = () => {
     console.log("button clicked");
     const tosatId = toast.loading("Processing...");
@@ -43,6 +30,9 @@ const Navbar = () => {
     toast.success("Logged Out Successful", { id: tosatId });
     navigate("/");
   };
+
+  const items = useAppSelector((state) => state.booking.booking);
+  const { pathname } = useLocation();
 
   return (
     <div className="bg-[#151C35] shadow-md navbar">
@@ -74,6 +64,20 @@ const Navbar = () => {
               </li>
             )
           )}
+          {/* Shopping Cart Icon */}
+          <li className="flex items-center">
+            {pathname === "/checkout" ? null : !items?.length ? null : (
+              <Link to="/check_out">
+                <div className="relative cursor-pointer mt-1">
+                  <FaShoppingCart className="h-5 w-5" />
+                  <span className="absolute text-red-500 -top-2 right-2 bg-white size-4 flex justify-center items-center rounded-full p-1 font-semibold">
+                    {items.length}
+                  </span>
+                </div>
+                {/* <FaShoppingCart className="text-2xl text-black cursor-pointer hover:text-primary" /> */}
+              </Link>
+            )}
+          </li>
 
           {/* Conditionally Render Login or Profile */}
           {token ? (

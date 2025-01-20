@@ -15,6 +15,7 @@ import RoomManagement from "../pages/dashboard/room_management/RoomManagement";
 import SlotManagement from "../pages/dashboard/slots_management/SlotManagement";
 import BookingManagement from "../pages/dashboard/booking_management/BookingManagement";
 import RoomDetails from "../pages/meeting_rooms/RoomDetails";
+import CheckOutPage from "../pages/commonPages/CheckOutPage";
 
 export const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/home",
         element: <Home />,
       },
       {
@@ -49,6 +54,10 @@ export const router = createBrowserRouter([
       {
         path: "/register",
         element: <Registration />,
+      },
+      {
+        path: "/check_out",
+        element: <CheckOutPage />,
       },
     ],
   },

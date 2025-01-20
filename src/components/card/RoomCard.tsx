@@ -3,7 +3,7 @@ import React from "react";
 import Slider from "react-slick";
 import { useGetAllSlotsQuery } from "../../redux/api/room_management/slot.api";
 import { Link } from "react-router-dom";
-import { Button, Card, Tag } from "antd";
+import { Card, Tag } from "antd";
 import RoomBookingModal from "../../pages/meeting_rooms/RoomBokingModal";
 
 export interface RoomCardProps {
