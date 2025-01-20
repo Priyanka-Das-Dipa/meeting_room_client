@@ -13,7 +13,7 @@ import { loadStripe } from "@stripe/stripe-js";
 const stripePromise = loadStripe(
   import.meta.env.VITE_Publishable_Key as string
 );
-console.log(stripePromise)
+// console.log(stripePromise)
 
 const CheckOutPage = () => {
   const { booking } = useAppSelector((state) => state.booking);

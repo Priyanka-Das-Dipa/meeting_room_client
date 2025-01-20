@@ -34,6 +34,7 @@ const RoomBookingModal = ({ room }: { room: TRoomData }) => {
   const [selectedDate, setSelectedDate] = useState<any>();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const localUser = useAppSelector(selectCurrentUser);
+  // console.log(localUser);
   const { data } = useGetOneUserQuery(localUser?.email);
   const user = data?.data;
   const dispatch = useAppDispatch();
@@ -155,10 +156,10 @@ const RoomBookingModal = ({ room }: { room: TRoomData }) => {
           {/* Date Picker */}
           <Flex gap={5} justify="space-between">
             <Form.Item label="Name" className="w-full">
-              <Input defaultValue={localUser?.name} disabled />
+              <Input defaultValue={localUser?.user?.name} disabled />
             </Form.Item>
             <Form.Item label="Email" className="w-full">
-              <Input defaultValue={localUser?.email} disabled />
+              <Input defaultValue={localUser?.user?.email} disabled />
             </Form.Item>
           </Flex>
           <Flex gap={5} justify="space-between" align="center">

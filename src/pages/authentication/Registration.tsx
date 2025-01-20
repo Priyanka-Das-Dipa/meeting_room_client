@@ -20,13 +20,13 @@ const Registration = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [profileImage, setProfileImage] = useState<any>();
-  console.log(profileImage);
+  // console.log(profileImage);
   const [registration] = useRegisterMutation();
   const location = useLocation();
   const dynamicNavigate = location?.state?.from?.pathname || "/";
 
   const onSubmit: SubmitHandler<FieldValues> = async (values) => {
-    console.log(values);
+    // console.log(values);
     const id = toast.loading("Registering...");
     values.fileUpload;
     try {
@@ -41,7 +41,7 @@ const Registration = () => {
 
       // Step 3: Send data to the server for registration
       const res = (await registration(payload)) as TResponse<any>;
-      console.log(payload);
+      // console.log(payload);
       // const res = (await registration(values)) as TResponse<any>;
       if (res?.data?.success) {
         const token = res?.data?.data?.token;

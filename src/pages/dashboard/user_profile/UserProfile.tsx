@@ -13,7 +13,7 @@ const UserProfile = () => {
             <img
               className="rounded-full size-44 mb-5"
               alt="example"
-              src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
+              src={user?.profileImage}
             />
           </div>
           <div>
