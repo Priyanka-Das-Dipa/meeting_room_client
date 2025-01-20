@@ -22,8 +22,6 @@ const AllRooms: React.FC = () => {
     search,
     limit: 10,
   });
-  console.log(isLoading, isFetching);
-  console.log(data);
 
   const rooms = data?.data?.result;
   const filterableData: { text: string; value: string }[] = [];

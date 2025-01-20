@@ -22,7 +22,7 @@ const SuccessModal = ({
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const handleViewBookings = () => {
-    navigate("/user/dashboard/myBookings");
+    navigate("/dashboard/booking-management");
     dispatch(clearBookingSlice());
   };
   const handleGoHome = () => {

@@ -74,12 +74,14 @@ const CreateRoomFrom: React.FC = ({ isUpdate, transformedProducts }: any) => {
         roomImg: imageUrl,
       };
       const res = (await addRoom(roomData)) as TResponse<any>;
+
       if (res.error) {
         toast.error(res?.error?.data?.message, { id });
       } else {
         toast.success(res?.data?.message, { id });
         setIsModalOpen(false);
       }
+      console.log(res);
     }
     if (transformedProducts) {
       const updatdata = { ...data, _id: transformedProducts?._id as string };
