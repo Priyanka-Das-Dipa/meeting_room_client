@@ -94,6 +94,10 @@ const Login = () => {
               Signup
             </Link>
           </p>
+          <div>
+            <p>Email: admin@gmail.com</p>
+            <p>Password: 123123</p>
+          </div>
         </div>
       </div>
     </div>
