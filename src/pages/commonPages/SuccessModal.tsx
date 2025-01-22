@@ -63,7 +63,7 @@ const SuccessModal = ({
               Booking Confirmed!
             </h1>
             <p className="md:text-lg text-gray-600 mb-8">
-              Thank you for booking with Roomify. Your room has been
+              Thank you for booking with ElevateSpaces!! Your room has been
               successfully reserved.
             </p>
             <div className="flex flex-col items-start pb-4 gap-2">
