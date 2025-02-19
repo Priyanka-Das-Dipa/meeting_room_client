@@ -52,7 +52,7 @@ const HeroSection = () => {
     slidesToScroll: 1,
   };
   return (
-    <div className="mb-14 ">
+    <div className="mb-14 overflow-hidden">
       <Slider {...settings}>
         {slides.map((slide) => (
           <div key={slide.id} className="relative h-full lg:h-[80vh]">

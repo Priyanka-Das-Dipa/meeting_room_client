@@ -107,6 +107,7 @@ const DashboardLayOut: React.FC = () => {
         </Header>
         <Content
           style={{
+            overflow: "auto",
             margin: "24px 16px",
             padding: 24,
             minHeight: 280,
@@ -114,7 +115,7 @@ const DashboardLayOut: React.FC = () => {
             borderRadius: borderRadiusLG,
           }}
         >
-          <div className="min-h-screen">
+          <div className="">
             <Outlet />
           </div>
         </Content>
