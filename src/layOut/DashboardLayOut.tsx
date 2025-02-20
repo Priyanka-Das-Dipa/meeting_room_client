@@ -105,7 +105,7 @@ const DashboardLayOut: React.FC = () => {
             }}
           />
         </Header>
-        <Content
+        <Content  
           style={{
             overflow: "auto",
             margin: "24px 16px",
